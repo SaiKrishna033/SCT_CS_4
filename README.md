@@ -20,7 +20,7 @@ This is a simple keylogger program that records and logs keystrokes. The program
 1. Clone the repository:
 
     ```sh
-    git clone https://github.com/SaiKrishna033/basic-keylogger.git
+    git clone https://github.com/SaiKrishna033/SCT_CS_4.git
     cd basic-keylogger
     ```
 
